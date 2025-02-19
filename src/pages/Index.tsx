@@ -13,6 +13,10 @@ const Index = () => {
   const [problems, setProblems] = useState<Problem[]>([]);
   const [solvedProblems, setSolvedProblems] = useState<string[]>([]);
 
+  const handleProfileConnect = () => {
+    setIsProfileConnected(true);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-primary text-primary-foreground py-6">
@@ -23,7 +27,7 @@ const Index = () => {
 
       <main className="container py-8 space-y-8">
         {!isProfileConnected ? (
-          <ProfileConnector />
+          <ProfileConnector onConnect={handleProfileConnect} />
         ) : !contestStarted ? (
           <ContestCreator />
         ) : (

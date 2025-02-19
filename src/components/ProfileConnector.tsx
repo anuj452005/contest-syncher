@@ -4,7 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 
-export const ProfileConnector = () => {
+interface ProfileConnectorProps {
+  onConnect: () => void;
+}
+
+export const ProfileConnector = ({ onConnect }: ProfileConnectorProps) => {
   const [handle, setHandle] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -12,7 +16,10 @@ export const ProfileConnector = () => {
     setLoading(true);
     try {
       // Here we'll add the Codeforces API integration
+      // For now, we'll just simulate a successful connection
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate API call
       toast.success("Profile connected successfully!");
+      onConnect();
     } catch (error) {
       toast.error("Failed to connect profile");
     }
