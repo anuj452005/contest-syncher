@@ -23,7 +23,7 @@ export const ContestProblem = ({ problem, index, isSolved = false }: ContestProb
           <div className="flex items-center gap-2">
             <Badge variant="secondary">{problem.rating}</Badge>
             {isSolved && (
-              <Badge variant="success" className="bg-success text-success-foreground">
+              <Badge variant="success">
                 Solved
               </Badge>
             )}
