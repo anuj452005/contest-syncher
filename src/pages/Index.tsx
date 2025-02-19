@@ -17,6 +17,12 @@ const Index = () => {
     setIsProfileConnected(true);
   };
 
+  const handleContestStart = (selectedProblems: Problem[]) => {
+    setProblems(selectedProblems);
+    setStartTime(new Date());
+    setContestStarted(true);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="bg-primary text-primary-foreground py-6">
@@ -29,7 +35,7 @@ const Index = () => {
         {!isProfileConnected ? (
           <ProfileConnector onConnect={handleProfileConnect} />
         ) : !contestStarted ? (
-          <ContestCreator />
+          <ContestCreator onContestStart={handleContestStart} />
         ) : (
           <div className="space-y-6">
             {startTime && <ContestTimer startTime={startTime} duration={120} />}

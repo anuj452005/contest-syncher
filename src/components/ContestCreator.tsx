@@ -3,17 +3,83 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { toast } from "sonner";
+import { Problem } from "@/types/codeforces";
+
+interface ContestCreatorProps {
+  onContestStart: (problems: Problem[]) => void;
+}
 
 const difficulties = ["800-1000", "1100-1300", "1400-1600", "1700-1900", "2000-2200"];
 const problemTypes = ["implementation", "dp", "graphs", "math", "data structures"];
 
-export const ContestCreator = () => {
+// Mock problems for now - we'll replace this with actual API calls later
+const mockProblems: Problem[] = [
+  {
+    contestId: 1721,
+    problemsetName: "Contest 1721",
+    index: "A",
+    name: "Image Problem",
+    type: "implementation",
+    points: 500,
+    rating: 800,
+    tags: ["implementation"]
+  },
+  {
+    contestId: 1722,
+    problemsetName: "Contest 1722",
+    index: "B",
+    name: "Dynamic Programming Challenge",
+    type: "dp",
+    points: 1000,
+    rating: 1300,
+    tags: ["dp", "math"]
+  },
+  {
+    contestId: 1723,
+    problemsetName: "Contest 1723",
+    index: "C",
+    name: "Graph Theory",
+    type: "graphs",
+    points: 1500,
+    rating: 1600,
+    tags: ["graphs", "dfs and similar"]
+  },
+  {
+    contestId: 1724,
+    problemsetName: "Contest 1724",
+    index: "D",
+    name: "Math Problem",
+    type: "math",
+    points: 2000,
+    rating: 1900,
+    tags: ["math", "number theory"]
+  },
+  {
+    contestId: 1725,
+    problemsetName: "Contest 1725",
+    index: "E",
+    name: "Data Structures Problem",
+    type: "data structures",
+    points: 2500,
+    rating: 2200,
+    tags: ["data structures", "trees"]
+  }
+];
+
+export const ContestCreator = ({ onContestStart }: ContestCreatorProps) => {
   const [selectedDifficulties, setSelectedDifficulties] = useState<string[]>([]);
   const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
 
   const createContest = () => {
-    // Here we'll add the contest creation logic
-    console.log("Creating contest with:", { selectedDifficulties, selectedTypes });
+    try {
+      // For now, we'll use mock problems
+      // Later, this will fetch problems from Codeforces API based on selected difficulties and types
+      toast.success("Contest created successfully!");
+      onContestStart(mockProblems);
+    } catch (error) {
+      toast.error("Failed to create contest");
+    }
   };
 
   return (
