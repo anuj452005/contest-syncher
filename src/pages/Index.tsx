@@ -3,11 +3,15 @@ import { useState } from "react";
 import { ProfileConnector } from "@/components/ProfileConnector";
 import { ContestCreator } from "@/components/ContestCreator";
 import { ContestTimer } from "@/components/ContestTimer";
+import { ContestProblems } from "@/components/ContestProblems";
+import { Problem } from "@/types/codeforces";
 
 const Index = () => {
   const [isProfileConnected, setIsProfileConnected] = useState(false);
   const [contestStarted, setContestStarted] = useState(false);
   const [startTime, setStartTime] = useState<Date | null>(null);
+  const [problems, setProblems] = useState<Problem[]>([]);
+  const [solvedProblems, setSolvedProblems] = useState<string[]>([]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -25,7 +29,7 @@ const Index = () => {
         ) : (
           <div className="space-y-6">
             {startTime && <ContestTimer startTime={startTime} duration={120} />}
-            {/* Contest problems will be displayed here */}
+            <ContestProblems problems={problems} solvedProblems={solvedProblems} />
           </div>
         )}
       </main>
