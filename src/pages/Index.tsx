@@ -38,7 +38,7 @@ const Index = () => {
           <ContestCreator onContestStart={handleContestStart} />
         ) : (
           <div className="space-y-6">
-            {startTime && <ContestTimer startTime={startTime} duration={120} />}
+            {startTime && <ContestTimer startTime={startTime} duration={1} />}
             <ContestProblems problems={problems} solvedProblems={solvedProblems} />
           </div>
         )}
